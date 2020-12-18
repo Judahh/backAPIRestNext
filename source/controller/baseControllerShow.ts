@@ -9,6 +9,7 @@ export default class BaseControllerShow
   extends BaseControllerDefault
   implements ControllerShowAdapter {
   async show(req: Request, res: Response): Promise<Response> {
+    // console.log('SHOW');
     return this.generateEvent(
       req,
       res,
