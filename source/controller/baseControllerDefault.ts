@@ -96,6 +96,7 @@ export default class BaseControllerDefault extends Default {
       const object = {};
       const { query } = req;
       let selection;
+      //  deepcode ignore HTTPSourceWithUncheckedType: params do not exist on next
       if (req['params'] && req['params'].filter)
         selection = req['params']?.filter;
       else selection = query as any;
