@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // file deepcode ignore no-any: any needed
 // file deepcode ignore object-literal-shorthand: argh
-import { Request, Response } from 'express';
+import { NextApiRequest as Request, NextApiResponse as Response } from 'next';
 import { ServiceModel, ServiceSimpleModel } from '@flexiblepersistence/service';
 import { Default } from 'default-initializer';
 import { Handler, Event, Operation } from 'flexiblepersistence';
@@ -11,7 +11,13 @@ settings.initFunction = 'init';
 export default class BaseControllerDefault extends Default {
   protected errorStatus: {
     [error: string]: number;
-  } = { Error: 400, error: 403, TypeError: 403, RemoveError: 400 };
+  } = {
+    Error: 400,
+    error: 403,
+    TypeError: 403,
+    RemoveError: 400,
+    NotFound: 404,
+  };
   // @ts-ignore
 
   protected handler: Handler | undefined;
@@ -43,6 +49,13 @@ export default class BaseControllerDefault extends Default {
     this.setName(this.getClassName().replace('Controller', this.getType()));
   }
 
+  protected generateError(res: Response, error) {
+    if ((error.message as string).includes('does not exist'))
+      error.name = 'NotFound';
+    res.status(this.errorStatus[error.name]).send({ error: error.message });
+    return res;
+  }
+
   protected async generateEvent(
     req: Request,
     res: Response,
@@ -56,29 +69,27 @@ export default class BaseControllerDefault extends Default {
     try {
       const content = req.body as ServiceSimpleModel;
       const object = {};
-      const filter = req.params?.filter as unknown;
+      const { query } = req;
+      console.log(query);
       const name = this.constructor.name.replace('Controller', '');
       let single;
       if (singleDefault !== undefined) single = singleDefault;
-      else single = (req.params?.single as unknown) as boolean;
+      else single = (req['params']?.single as unknown) as boolean;
       const event = new Event({
         operation,
         single: single,
         content: content,
-        selection: filter,
+        selection: query,
         name: name,
       });
-
-      // console.log('Event', event);
-
+      console.log(event);
       if (this.getName())
         object[this.getName()] = (await useFunction(event))['receivedItem'];
       else throw new Error('Element is not specified.');
-      return res.json(object);
+      res.status(200).json(object);
+      return res;
     } catch (error) {
-      return res
-        .status(this.errorStatus[error.name])
-        .send({ error: error.message });
+      return this.generateError(res, error);
     }
   }
 }
