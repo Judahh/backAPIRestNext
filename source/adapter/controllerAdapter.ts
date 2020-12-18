@@ -1,6 +1,10 @@
-import ControllerRestrictedAdapter from './controllerRestrictedAdapter';
-import ControllerReservedAdapter from './controllerReservedAdapter';
+import ControllerDeleteAdapter from './controllerDeleteAdapter';
+import ControllerReadAdapter from './controllerReadAdapter';
+import ControllerStoreAdapter from './controllerStoreAdapter';
+import ControllerUpdateAdapter from './controllerUpdateAdapter';
 
 export default interface ControllerAdapter
-  extends ControllerRestrictedAdapter,
-    ControllerReservedAdapter {}
+  extends ControllerStoreAdapter,
+    ControllerDeleteAdapter,
+    ControllerUpdateAdapter,
+    ControllerReadAdapter {}

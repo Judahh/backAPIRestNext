@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { Request, Response } from 'express';
+import { NextApiRequest as Request, NextApiResponse as Response } from 'next';
 import ControllerIndexAdapter from '../adapter/controllerIndexAdapter';
 import BaseControllerDefault from './baseControllerDefault';
 import { Operation } from 'flexiblepersistence';

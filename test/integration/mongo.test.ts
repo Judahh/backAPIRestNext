@@ -1,23 +1,17 @@
 /* eslint-disable @typescript-eslint/no-this-alias */
-import { ServiceHandler } from '@flexiblepersistence/service';
-import { DAODB, Utils } from '../../source/index';
-// import dBHandler from './dBHandler';
-
 import DBHandler from './dBHandler';
 import TestController from './testController';
 import { Test } from './test.class';
 import { mockResponse } from './response.mock';
 
-import { Request, Response } from 'express';
+import { NextApiRequest as Request, NextApiResponse as Response } from 'next';
 
 test('store test, update, select all, select by id test and delete it', async (done) => {
-  const pool = ((DBHandler.getReadHandler() as ServiceHandler)
-    .persistence as DAODB).getPool();
-  await Utils.init(pool);
   const handler = DBHandler.getHandler();
   const controller = new TestController(DBHandler.getInit());
   try {
     await handler.getWrite().clear();
+    await handler.getWrite()?.getRead()?.getReadDB()?.clear();
 
     const sentTest = new Test();
     const sentTest2 = new Test();
@@ -33,7 +27,7 @@ test('store test, update, select all, select by id test and delete it', async (d
     // console.log('storedTest:', storedTest);
 
     sentTest.id = storedTest.id;
-    const expectedTest = { id: storedTest.id, name: null };
+    const expectedTest = { id: storedTest.id };
     // console.log('expectedTest:', expectedTest);
 
     expect(storedTest).toStrictEqual(expectedTest);
@@ -59,7 +53,7 @@ test('store test, update, select all, select by id test and delete it', async (d
     // console.log('storedTest2:', storedTest);
 
     sentTest2.id = storedTest2.id;
-    const expectedTest2 = { id: storedTest2.id, name: null };
+    const expectedTest2 = { id: storedTest2.id };
     // console.log('expectedTest:', expectedTest);
 
     expect(storedTest2).toStrictEqual(expectedTest2);
@@ -78,6 +72,8 @@ test('store test, update, select all, select by id test and delete it', async (d
 
     const sentTest3 = { name: 'Test' };
 
+    // console.log('storedTest2:', storedTest2);
+
     const update = await controller.update(
       ({
         body: sentTest3,
@@ -88,13 +84,13 @@ test('store test, update, select all, select by id test and delete it', async (d
       } as unknown) as Request,
       (mockResponse as unknown) as Response
     );
-    // console.log('storedTest2:', storedTest2);
+    // console.log('update:', update);
 
     const updatedTest = update['received'].Test;
     // console.log('updatedTest:', updatedTest);
     const expectedUpdatedTest = { id: storedTest2.id, name: sentTest3.name };
     // console.log('expectedUpdatedTest:', expectedUpdatedTest);
-    expect(updatedTest).toStrictEqual(expectedUpdatedTest);
+    expect(updatedTest).toStrictEqual(storedTest2);
 
     const show2 = await controller.show(
       ({
@@ -105,7 +101,7 @@ test('store test, update, select all, select by id test and delete it', async (d
 
     const showTest2 = show2['received'].Test;
     // console.log('showTest2:', showTest2);
-    const expectedTests2 = [storedTest, updatedTest];
+    const expectedTests2 = [storedTest, expectedUpdatedTest];
     // console.log('expectedTests2:', expectedTests2);
 
     expect(showTest2).toStrictEqual(expectedTests2);
@@ -121,7 +117,7 @@ test('store test, update, select all, select by id test and delete it', async (d
 
     const deletedTest = deleted['received'].Test;
     // console.log('deletedTest:', deletedTest);
-    const expectedDeletedTest = true;
+    const expectedDeletedTest = expectedUpdatedTest;
     // console.log('expectedDeletedTest:', expectedDeletedTest);
     expect(deletedTest).toStrictEqual(expectedDeletedTest);
 
@@ -139,11 +135,11 @@ test('store test, update, select all, select by id test and delete it', async (d
   } catch (error) {
     console.error(error);
     await handler.getWrite().clear();
-    await Utils.end(pool);
+    await handler.getWrite()?.getRead()?.getReadDB()?.clear();
     expect(error).toBe(null);
     done();
   }
   await handler.getWrite().clear();
-  await Utils.end(pool);
+  await handler.getWrite()?.getRead()?.getReadDB()?.clear();
   done();
 });
