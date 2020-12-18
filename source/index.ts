@@ -38,6 +38,7 @@ import { Pool } from 'pg';
 import BasicService from './service/basicService';
 import DatabaseHandler from './database/databaseHandler';
 import DatabaseHandlerInitializer from './database/databaseHandlerInitializer';
+import RouterInitializer from './router/routerInitializer';
 
 export {
   SimpleApp,
@@ -70,4 +71,8 @@ export {
   Mixin,
   Pool,
 };
-export type { DatabaseHandlerInitializer, PersistenceAdapter };
+export type {
+  RouterInitializer,
+  DatabaseHandlerInitializer,
+  PersistenceAdapter,
+};
