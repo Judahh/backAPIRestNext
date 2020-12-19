@@ -14,17 +14,4 @@ export default class BaseController
     BaseControllerUpdate,
     BaseControllerRead
   )
-  implements ControllerAdapter {
-  protected method: {
-    [method: string]: string;
-  } = {
-    GET: 'read',
-    POST: 'store',
-    PUT: 'update',
-    PATCH: 'update',
-    DELETE: 'delete',
-  };
-  handlerRequest(req: Request, res: Response): Promise<Response> {
-    return this[this.method[req.method]](req, res);
-  }
-}
+  implements ControllerAdapter {}
