@@ -19,12 +19,24 @@ export default class BaseControllerDefault extends Default {
     TypeError: 403,
     NotFound: 404,
   };
+  protected method: {
+    [method: string]: string;
+  } = {
+    GET: 'read',
+    POST: 'store',
+    PUT: 'update',
+    PATCH: 'update',
+    DELETE: 'delete',
+  };
   // @ts-ignore
-
   protected handler: Handler | undefined;
-
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected middlewares?: any[];
+  handlerRequest(req: Request, res: Response): Promise<Response> {
+    if (req.method) return this[this.method[req.method]](req, res);
+    const error = new Error('Missing HTTP method.');
+    throw error;
+  }
 
   constructor(initDefault?: RouterInitializer) {
     super(initDefault);
