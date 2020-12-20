@@ -3,8 +3,7 @@
 // file deepcode ignore object-literal-shorthand: argh
 import { NextApiRequest as Request, NextApiResponse as Response } from 'next';
 import { ServiceModel, ServiceSimpleModel } from '@flexiblepersistence/service';
-import { Default } from 'default-initializer';
-import { Handler, Event, Operation } from 'flexiblepersistence';
+import { Handler, Event, Operation, Default } from 'flexiblepersistence';
 import { settings } from 'ts-mixer';
 import RouterInitializer from '../router/routerInitializer';
 settings.initFunction = 'init';
