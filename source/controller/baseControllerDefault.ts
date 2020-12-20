@@ -111,7 +111,7 @@ export default class BaseControllerDefault extends Default {
       if (req['params'] && req['params'].filter)
         selection = req['params']?.filter;
       else selection = query as any;
-      const name = this.constructor.name.replace('Controller', '');
+      const name = this.getClassName().replace('Controller', '');
       let single = req['params']?.single as boolean;
       // console.log(single);
       if (singleDefault !== undefined && single === undefined)
