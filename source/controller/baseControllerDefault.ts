@@ -109,7 +109,7 @@ export default class BaseControllerDefault extends Default {
       let selection;
       //  deepcode ignore HTTPSourceWithUncheckedType: params do not exist on next
       if (req['params'] && req['params'].filter)
-        selection = req['params']?.filter;
+        selection = req['params'].filter;
       else selection = query as any;
       const name = this.getClassName().replace('Controller', '');
       let single = req['params']?.single as boolean;

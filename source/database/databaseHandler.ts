@@ -10,7 +10,7 @@ export default abstract class DatabaseHandler {
   protected init?: DatabaseHandlerInitializer;
 
   getJournaly(): SubjectObserver<any> {
-    if (this.init && this.init.journaly) return this.init?.journaly;
+    if (this.init && this.init.journaly) return this.init.journaly;
     throw new Error('DatabaseHandler must have a init and a handler.');
   }
 
@@ -30,8 +30,16 @@ export default abstract class DatabaseHandler {
     throw new Error('DatabaseHandler must have a init.');
   }
 
-  getReadHandler(): PersistenceAdapter | undefined {
-    return this.getHandler()?.getWrite().getRead()?.getReadDB();
+  getReadHandler(): PersistenceAdapter {
+    const handler = this.getHandler();
+    if (handler) {
+      const write = handler.getWrite();
+      if (write) {
+        const read = write.getRead();
+        if (read) if (read.getReadDB()) return read.getReadDB();
+      }
+    }
+    throw new Error('DatabaseHandler must have a ReadDB.');
   }
 
   static getInstance(init?: DatabaseHandlerInitializer): DatabaseHandler {
