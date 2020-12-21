@@ -106,13 +106,13 @@ export default class BaseControllerDefault extends Default {
       const content = req.body as ServiceSimpleModel;
       const object = {};
       const { query } = req;
+      const params = req['params'];
       let selection;
       //  deepcode ignore HTTPSourceWithUncheckedType: params do not exist on next
-      if (req['params'] && req['params'].filter)
-        selection = req['params']?.filter;
+      if (params && params.filter) selection = params.filter;
       else selection = query as any;
       const name = this.getClassName().replace('Controller', '');
-      let single = req['params']?.single as boolean;
+      let single = params?.single as boolean;
       // console.log(single);
       if (singleDefault !== undefined && single === undefined)
         single = singleDefault;
