@@ -45,7 +45,9 @@ export default class BaseControllerDefault extends Default {
     super.init(initDefault);
     if (initDefault) {
       this.handler = initDefault.handler;
-      this.middlewares = initDefault.middlewares;
+      this.middlewares = [];
+      if (initDefault.middlewares)
+        this.middlewares.push(...initDefault.middlewares);
     }
     // console.log(this.handler);
   }
