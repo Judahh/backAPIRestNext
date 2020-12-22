@@ -8,15 +8,20 @@ import { settings } from 'ts-mixer';
 import RouterInitializer from '../router/routerInitializer';
 settings.initFunction = 'init';
 export default class BaseControllerDefault extends Default {
-  protected errorStatus: {
+  protected regularErrorStatus: {
     [error: string]: number;
   } = {
     Error: 400,
     RemoveError: 400,
+    JsonWebTokenError: 401,
     Unauthorized: 401,
     error: 403,
     TypeError: 403,
     NotFound: 404,
+    UnknownError: 500,
+  };
+  protected errorStatus?: {
+    [error: string]: number;
   };
   protected method: {
     [method: string]: string;
@@ -89,7 +94,17 @@ export default class BaseControllerDefault extends Default {
   protected generateError(res: Response, error) {
     if ((error.message as string).includes('does not exist'))
       error.name = 'NotFound';
-    res.status(this.errorStatus[error.name]).send({ error: error.message });
+    if (!this.errorStatus || this.errorStatus[error.name] === undefined)
+      if (this.regularErrorStatus[error.name] === undefined)
+        res
+          .status(this.regularErrorStatus['UnknownError'])
+          .send({ error: error.message });
+      else
+        res
+          .status(this.regularErrorStatus[error.name])
+          .send({ error: error.message });
+    else
+      res.status(this.errorStatus[error.name]).send({ error: error.message });
     return res;
   }
 
