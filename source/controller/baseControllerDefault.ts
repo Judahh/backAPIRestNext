@@ -20,9 +20,6 @@ export default class BaseControllerDefault extends Default {
     NotFound: 404,
     UnknownError: 500,
   };
-  protected errorStatus?: {
-    [error: string]: number;
-  };
   protected method: {
     [method: string]: string;
   } = {
@@ -40,6 +37,17 @@ export default class BaseControllerDefault extends Default {
     if (req.method) return this[this.method[req.method]](req, res);
     const error = new Error('Missing HTTP method.');
     throw error;
+  }
+
+  protected errorStatus(
+    error?: string
+  ):
+    | {
+        [error: string]: number;
+      }
+    | number {
+    if (error) return this.regularErrorStatus[error];
+    return this.regularErrorStatus;
   }
 
   constructor(initDefault?: RouterInitializer) {
@@ -94,17 +102,14 @@ export default class BaseControllerDefault extends Default {
   protected generateError(res: Response, error) {
     if ((error.message as string).includes('does not exist'))
       error.name = 'NotFound';
-    if (!this.errorStatus || this.errorStatus[error.name] === undefined)
-      if (this.regularErrorStatus[error.name] === undefined)
-        res
-          .status(this.regularErrorStatus['UnknownError'])
-          .send({ error: error.message });
-      else
-        res
-          .status(this.regularErrorStatus[error.name])
-          .send({ error: error.message });
+    if (!this.errorStatus() || this.errorStatus(error.name) === undefined)
+      res
+        .status(this.errorStatus('UnknownError') as number)
+        .send({ error: error.message });
     else
-      res.status(this.errorStatus[error.name]).send({ error: error.message });
+      res
+        .status(this.errorStatus(error.name) as number)
+        .send({ error: error.message });
     return res;
   }
 
