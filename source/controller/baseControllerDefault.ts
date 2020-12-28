@@ -180,9 +180,9 @@ export default class BaseControllerDefault extends Default {
     singleDefault?: boolean
   ): Promise<Response> {
     try {
+      const event = this.formatEvent(req, operation, singleDefault);
       await this.runMiddlewares(req, res);
       const object = {};
-      const event = this.formatEvent(req, operation, singleDefault);
       if (this.getName())
         object[this.getName()] = (await useFunction(event))['receivedItem'];
       else throw new Error('Element is not specified.');
