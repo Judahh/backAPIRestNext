@@ -150,8 +150,7 @@ export default class BaseControllerDefault extends Default {
     let selection;
     if (params) {
       if (params.filter) selection = params.filter;
-      else selection = query as any;
-    }
+    } else selection = query as any;
     return selection;
   }
 
