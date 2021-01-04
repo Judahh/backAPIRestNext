@@ -122,10 +122,7 @@ export default class BaseControllerDefault extends Default {
   }
 
   protected getObject(object) {
-    if (this.hasObjectName())
-      return object.hasOwnProperty(this.getName())
-        ? object[this.getName()]
-        : undefined;
+    if (this.hasObjectName()) return object[this.getName()];
     return object;
   }
 
