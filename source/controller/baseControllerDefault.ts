@@ -148,10 +148,8 @@ export default class BaseControllerDefault extends Default {
 
   formatSelection(params?, query?) {
     let selection;
-    if (params) {
-      if (params.filter) selection = params.filter;
-      else selection = query as any;
-    }
+    if (params && params.filter) selection = params.filter;
+    else selection = query as any;
     return selection;
   }
 
