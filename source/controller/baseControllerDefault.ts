@@ -11,13 +11,15 @@ export default class BaseControllerDefault extends Default {
   protected regularErrorStatus: {
     [error: string]: number;
   } = {
+    error: 400,
     Error: 400,
     RemoveError: 400,
     JsonWebTokenError: 401,
     Unauthorized: 401,
-    error: 403,
+    PaymentRequired: 402,
     TypeError: 403,
     NotFound: 404,
+    MethodNotAllowed: 405,
     UnknownError: 500,
   };
   protected method: {
@@ -170,6 +172,37 @@ export default class BaseControllerDefault extends Default {
     };
     return event;
   }
+  protected generateStatus(operation: Operation, object): number {
+    switch (operation) {
+      case Operation.create:
+        return 201;
+      case Operation.nonexistent:
+        return 410;
+      default:
+        if (
+          object[this.getName()] === undefined ||
+          object[this.getName()] === {} ||
+          object[this.getName()].length === 0
+        )
+          return 204;
+        else return 200;
+    }
+    // 206 Partial Content - pagination
+  }
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  protected async generateObject(
+    useFunction: (
+      // eslint-disable-next-line no-unused-vars
+      event: Event
+    ) => Promise<ServiceModel[] | ServiceModel | number | boolean>,
+    event: Event
+  ) {
+    const object = {};
+    if (this.getName())
+      object[this.getName()] = (await useFunction(event))['receivedItem'];
+    else throw new Error('Element is not specified.');
+    return object;
+  }
   protected async generateEvent(
     req: Request,
     res: Response,
@@ -183,11 +216,9 @@ export default class BaseControllerDefault extends Default {
     try {
       const event = this.formatEvent(req, operation, singleDefault);
       await this.runMiddlewares(req, res);
-      const object = {};
-      if (this.getName())
-        object[this.getName()] = (await useFunction(event))['receivedItem'];
-      else throw new Error('Element is not specified.');
-      res.status(200).json(object);
+      const object = await this.generateObject(useFunction, event);
+      const status = this.generateStatus(operation, object);
+      res.status(status).json(object);
       return res;
     } catch (error) {
       return this.generateError(res, error);
