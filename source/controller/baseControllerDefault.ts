@@ -35,16 +35,20 @@ export default class BaseControllerDefault extends Default {
   protected handler: Handler | undefined;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected middlewares?: any[];
-  mainRequestHandler(req: Request, res: Response): Promise<Response> {
+  async mainRequestHandler(req: Request, res: Response): Promise<Response> {
     try {
+      let response;
       if (
         req.method &&
         this.method[req.method] &&
         this[this.method[req.method]]
       )
-        return this[this.method[req.method]](req, res);
-      const error = new Error('Missing HTTP method.');
-      throw error;
+        response = await this[this.method[req.method]](req, res);
+      else {
+        const error = new Error('Missing HTTP method.');
+        throw error;
+      }
+      return response;
     } catch (error) {
       return new Promise(() => this.generateError(res, error));
     }
