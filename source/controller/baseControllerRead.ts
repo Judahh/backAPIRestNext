@@ -9,7 +9,8 @@ export default class BaseControllerRead
   extends Mixin(BaseControllerIndex, BaseControllerShow)
   implements ControllerReadAdapter {
   async read(req: Request, res: Response): Promise<Response> {
-    if (Object.keys(req['query']).length !== 0) return this.index(req, res);
+    if (Object.keys(req['query']).length !== 0 && req['query'].id)
+      return this.index(req, res);
     return this.show(req, res);
   }
 }

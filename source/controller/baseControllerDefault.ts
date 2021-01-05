@@ -35,10 +35,19 @@ export default class BaseControllerDefault extends Default {
   protected handler: Handler | undefined;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected middlewares?: any[];
-  handlerRequest(req: Request, res: Response): Promise<Response> {
-    if (req.method) return this[this.method[req.method]](req, res);
-    const error = new Error('Missing HTTP method.');
-    throw error;
+  mainRequestHandler(req: Request, res: Response): Promise<Response> {
+    try {
+      if (
+        req.method &&
+        this.method[req.method] &&
+        this[this.method[req.method]]
+      )
+        return this[this.method[req.method]](req, res);
+      const error = new Error('Missing HTTP method.');
+      throw error;
+    } catch (error) {
+      return new Promise(() => this.generateError(res, error));
+    }
   }
 
   protected errorStatus(
@@ -101,7 +110,7 @@ export default class BaseControllerDefault extends Default {
     this.setName(this.getClassName().replace('Controller', this.getType()));
   }
 
-  protected generateError(res: Response, error) {
+  protected generateError(res: Response, error): Response {
     if ((error.message as string).includes('does not exist'))
       error.name = 'NotFound';
     if (!this.errorStatus() || this.errorStatus(error.name) === undefined)
@@ -127,6 +136,7 @@ export default class BaseControllerDefault extends Default {
   }
 
   protected setObject(object, value) {
+    if (value === undefined) value = {};
     if (this.hasObjectName()) {
       if (!this.getName()) throw new Error('Element is not specified.');
       object[this.getName()] = value;
@@ -199,7 +209,7 @@ export default class BaseControllerDefault extends Default {
       default:
         if (
           resultObject === undefined ||
-          resultObject === {} ||
+          Object.keys(resultObject).length === 0 ||
           resultObject.length === 0
         )
           return 204;
@@ -227,15 +237,11 @@ export default class BaseControllerDefault extends Default {
     ) => Promise<ServiceModel[] | ServiceModel | number | boolean>,
     singleDefault?: boolean
   ): Promise<Response> {
-    try {
-      const event = this.formatEvent(req, operation, singleDefault);
-      await this.runMiddlewares(req, res);
-      const object = await this.generateObject(useFunction, event);
-      const status = this.generateStatus(operation, object);
-      res.status(status).json(object);
-      return res;
-    } catch (error) {
-      return this.generateError(res, error);
-    }
+    const event = this.formatEvent(req, operation, singleDefault);
+    await this.runMiddlewares(req, res);
+    const object = await this.generateObject(useFunction, event);
+    const status = this.generateStatus(operation, object);
+    res.status(status).json(object);
+    return res;
   }
 }
