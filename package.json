@@ -51,13 +51,11 @@
     "@flexiblepersistence/sequelize": "latest",
     "@flexiblepersistence/service": "latest",
     "pg": "latest",
-    "cors": "latest",
     "flexiblepersistence": "latest",
     "journaly": "latest",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "swr": "latest",
     "ts-mixer": "latest"
   },
   "devDependencies": {
