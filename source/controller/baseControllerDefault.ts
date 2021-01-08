@@ -195,7 +195,7 @@ export default class BaseControllerDefault extends Default {
       content: this.formatContent(req),
       selection: this.formatSelection(params, this.formatQuery(req)),
       name,
-      headers: req.headers,
+      options: req.headers,
     });
     req['event'] = {
       operation,
