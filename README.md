@@ -1,8 +1,8 @@
-# backNextApi
+# backAPIRestNext
 
-![Publish](https://github.com/Judahh/backNextApi/workflows/Publish/badge.svg)
-[![npm version](https://badge.fury.io/js/@flexiblepersistence/backnextapi.svg)](https://badge.fury.io/js/@flexiblepersistence/backnextapi)
-[![npm downloads](https://img.shields.io/npm/dt/@flexiblepersistence/backnextapi.svg)](https://img.shields.io/npm/dt/@flexiblepersistence/backnextapi.svg)
+![Publish](https://github.com/Judahh/backAPIRestNext/workflows/Publish/badge.svg)
+[![npm version](https://badge.fury.io/js/%40backapirest%2Fnext.svg)](https://badge.fury.io/js/%40backapirest%2Fnext)
+[![npm downloads](https://img.shields.io/npm/dt/%40backapirest%2Fnext.svg)](https://img.shields.io/npm/dt/%40backapirest%2Fnext.svg)
 
 A simple API framework using Flexible Persistence
 
@@ -54,13 +54,13 @@ Installation is done using the
 or [`yarn add` command](https://classic.yarnpkg.com/en/docs/cli/add):
 
 ```bash
-$ npm install @flexiblepersistence/backnextapi
+$ npm install @backapirest/next
 ```
 
 or
 
 ```bash
-$ yarn add @flexiblepersistence/backnextapi
+$ yarn add @backapirest/next
 ```
 
 ## Tests
@@ -84,6 +84,7 @@ $ yarn test
 
 ## People
 
-The original author of Journaly is [Judah Lima](https://github.com/Judahh)
+The original author of backAPIRestNext is
+[Judah Lima](https://github.com/Judahh)
 
-[List of all contributors](https://github.com/Judahh/backNextApi/graphs/contributors)
+[List of all contributors](https://github.com/Judahh/backAPIRestNext/graphs/contributors)

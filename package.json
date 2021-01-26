@@ -1,8 +1,8 @@
 {
-  "name": "@flexiblepersistence/backnextapi",
-  "productName": "backNextApi",
+  "name": "@backapirest/next",
+  "productName": "backAPIRestNext",
   "author": "Judah Holanda Correia Lima <judahholanda7@gmail.com> (https://judahh.com)",
-  "version": "0.2.4",
+  "version": "0.1.0",
   "private": false,
   "description": "A simple API framework using Flexible Persistence",
   "main": "dist/source/index.js",
@@ -47,16 +47,10 @@
     "tsc:w": "tsc -w"
   },
   "dependencies": {
-    "@flexiblepersistence/dao": "latest",
-    "@flexiblepersistence/sequelize": "latest",
-    "@flexiblepersistence/service": "latest",
-    "pg": "latest",
-    "flexiblepersistence": "latest",
-    "journaly": "latest",
+    "backapirest": "latest",
     "next": "latest",
     "react": "latest",
-    "react-dom": "latest",
-    "ts-mixer": "latest"
+    "react-dom": "latest"
   },
   "devDependencies": {
     "@types/jest": "latest",
