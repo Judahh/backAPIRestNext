@@ -84,6 +84,7 @@ $ yarn test
 
 ## People
 
-The original author of backAPIRestNext is [Judah Lima](https://github.com/Judahh)
+The original author of backAPIRestNext is
+[Judah Lima](https://github.com/Judahh)
 
 [List of all contributors](https://github.com/Judahh/backAPIRestNext/graphs/contributors)
