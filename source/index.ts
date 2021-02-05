@@ -29,6 +29,10 @@ import {
   RouterInitializer,
   DatabaseHandlerInitializer,
   PersistenceAdapter,
+  BaseControllerConnect,
+  BaseControllerHead,
+  BaseControllerOptions,
+  BaseControllerTrace,
 } from 'backapirest';
 
 import RouterSingleton from './router/routerSingleton';
@@ -46,6 +50,10 @@ export {
   BaseControllerShow,
   BaseControllerStore,
   BaseControllerUpdate,
+  BaseControllerConnect,
+  BaseControllerHead,
+  BaseControllerTrace,
+  BaseControllerOptions,
   RouterSingleton,
   Handler,
   Event,
