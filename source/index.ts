@@ -1,6 +1,5 @@
 import {
   DatabaseHandler,
-  Utils,
   Journaly,
   BasicService,
   BaseController,
@@ -22,8 +21,6 @@ import {
   SubjectObserverWithMemory,
   PublisherSubscriber,
   PublisherSubscriberWithMemory,
-  DAODB,
-  SequelizeDB,
   Mixin,
   Pool,
   RouterInitializer,
@@ -39,7 +36,6 @@ import RouterSingleton from './router/routerSingleton';
 
 export {
   DatabaseHandler,
-  Utils,
   Journaly,
   BasicService,
   BaseController,
@@ -66,8 +62,6 @@ export {
   SubjectObserverWithMemory,
   PublisherSubscriber,
   PublisherSubscriberWithMemory,
-  DAODB,
-  SequelizeDB,
   Mixin,
   Pool,
 };
