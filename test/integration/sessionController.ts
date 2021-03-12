@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { BaseController } from '../../source';
 
 export default class SessionController extends BaseController {
