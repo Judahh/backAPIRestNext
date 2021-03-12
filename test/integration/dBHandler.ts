@@ -3,12 +3,13 @@
 // file deepcode ignore no-any: any needed
 // file deepcode ignore object-literal-shorthand: argh
 import { Handler, MongoDB, PersistenceInfo } from 'flexiblepersistence';
-import { Journaly, SubjectObserver, DatabaseHandler } from '../../source/index';
+import { DatabaseHandler } from '../../source/index';
 import TestService from './testService';
 import { eventInfo, readInfo } from './databaseInfos';
 import { ServiceHandler } from '@flexiblepersistence/service';
+import { Journaly, SenderReceiver } from 'journaly';
 
-const journaly = Journaly.newJournaly() as SubjectObserver<any>;
+const journaly = Journaly.newJournaly() as SenderReceiver<any>;
 const readDatabase = new PersistenceInfo(readInfo, journaly);
 const eventDatabase = new PersistenceInfo(eventInfo, journaly);
 
