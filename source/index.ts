@@ -1,6 +1,4 @@
 import {
-  DatabaseHandler,
-  BasicService,
   BaseController,
   BaseControllerDefault,
   BaseControllerDelete,
@@ -10,8 +8,6 @@ import {
   BaseControllerStore,
   BaseControllerUpdate,
   Mixin,
-  RouterInitializer,
-  DatabaseHandlerInitializer,
   BaseControllerConnect,
   BaseControllerHead,
   BaseControllerOptions,
@@ -21,8 +17,6 @@ import {
 import RouterSingleton from './router/routerSingleton';
 
 export {
-  DatabaseHandler,
-  BasicService,
   BaseController,
   BaseControllerDefault,
   BaseControllerDelete,
@@ -38,4 +32,3 @@ export {
   RouterSingleton,
   Mixin,
 };
-export type { RouterInitializer, DatabaseHandlerInitializer };
