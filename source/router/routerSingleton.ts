@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { BaseControllerDefault, RouterInitializer } from 'backapirest';
+import { BaseControllerDefault } from 'backapirest';
+import { RouterInitializer } from 'backapi';
 // @ts-ignore
 export default class RouterSingleton {
   protected controller:
