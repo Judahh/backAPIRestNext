@@ -2,7 +2,7 @@
   "name": "@backapirest/next",
   "productName": "backAPIRestNext",
   "author": "Judah Holanda Correia Lima <judahholanda7@gmail.com> (https://judahh.com)",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "private": false,
   "description": "A simple API framework using Flexible Persistence",
   "main": "dist/source/index.js",
@@ -53,7 +53,7 @@
     "next": "latest"
   },
   "devDependencies": {
-    "@types/jest": "latest",
+    "@types/jest": "26.0.24",
     "@types/node": "latest",
     "@types/react": "latest",
     "@typescript-eslint/eslint-plugin": "latest",
