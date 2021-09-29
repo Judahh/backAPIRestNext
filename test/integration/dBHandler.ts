@@ -2,7 +2,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // file deepcode ignore no-any: any needed
 // file deepcode ignore object-literal-shorthand: argh
-import { Handler, MongoDB, PersistenceInfo } from 'flexiblepersistence';
+import {
+  Handler,
+  MongoPersistence,
+  PersistenceInfo,
+} from 'flexiblepersistence';
 import { DatabaseHandler } from 'backapi';
 import TestService from './testService';
 import { eventInfo, readInfo } from './databaseInfos';
@@ -13,7 +17,7 @@ const journaly = Journaly.newJournaly() as SenderReceiver<any>;
 const readDatabase = new PersistenceInfo(readInfo, journaly);
 const eventDatabase = new PersistenceInfo(eventInfo, journaly);
 
-const database = new MongoDB(readDatabase);
+const database = new MongoPersistence(readDatabase);
 
 const read = new ServiceHandler(
   readDatabase,
@@ -22,7 +26,7 @@ const read = new ServiceHandler(
   },
   database
 );
-const write = new MongoDB(eventDatabase);
+const write = new MongoPersistence(eventDatabase);
 // console.log(journaly.getSubjects());
 const handler = new Handler(write, read);
 export default DatabaseHandler.getInstance({

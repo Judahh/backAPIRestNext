@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { BaseControllerDefault } from 'backapirest';
-import { RouterInitializer } from 'backapi';
+import { IRouter } from 'backapi';
 // @ts-ignore
 export default class RouterSingleton {
   protected controller:
@@ -12,7 +12,7 @@ export default class RouterSingleton {
     | undefined;
   // @ts-ignore
   // eslint-disable-next-line no-unused-vars
-  abstract createRoutes(initDefault?: RouterInitializer): void;
+  abstract createRoutes(initDefault?: IRouter): void;
   protected static _instance: RouterSingleton;
 
   static getInstance(): RouterSingleton {
