@@ -5400,6 +5400,11 @@ text-table@^0.2.0:
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
   integrity sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=
 
+thread-promises@^1.5.2:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/thread-promises/-/thread-promises-1.5.2.tgz#ed428bf50a8379939b31f7f7c4fc89b066a9d786"
+  integrity sha512-tx/jDueltnmxym59oT44KI0DrhnfsszjWf6LxrLMofBEJKuovaXIs/ydnwITweGljQu/14WhPpCaxc8vKv9nng==
+
 throat@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/throat/-/throat-5.0.0.tgz#c5199235803aad18754a667d659b5e72ce16764b"
