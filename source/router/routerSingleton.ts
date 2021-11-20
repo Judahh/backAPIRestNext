@@ -22,7 +22,11 @@ export default class RouterSingleton {
     return this._instance;
   }
 
-  getController() {
+  getControllers() {
     return this.controller;
+  }
+
+  getController(name: string) {
+    return this.controller ? this.controller[name] : undefined;
   }
 }
