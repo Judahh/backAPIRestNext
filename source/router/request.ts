@@ -1,11 +1,11 @@
 import { DatabaseHandler } from 'backapi';
+import RouterSingleton from './routerSingleton';
 import controller from './controller';
-import RouterCreator from './routerCreator';
 
 const request = (
   req: Request,
   res: Response,
-  routerSingleton: RouterCreator,
+  routerSingleton: RouterSingleton,
   databaseHandler: DatabaseHandler,
   name: string
 ): Promise<Response> | undefined => {

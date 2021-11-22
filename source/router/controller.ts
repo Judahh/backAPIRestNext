@@ -1,10 +1,10 @@
 import { DatabaseHandler } from 'backapi';
 import { BaseControllerDefault } from 'backapirest';
-import RouterCreator from './routerCreator';
+import RouterSingleton from './routerSingleton';
 import stepIndex from './stepIndex';
 
 const controller = (
-  routerSingleton: RouterCreator,
+  routerSingleton: RouterSingleton,
   databaseHandler: DatabaseHandler,
   name: string
 ): BaseControllerDefault | undefined => {
