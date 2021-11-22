@@ -1,11 +1,13 @@
 import TPromise from 'thread-promises';
-import RouterCreator from './routerCreator';
+import RouterSingleton from './routerSingleton';
 
 const createRoutes = (
-  router: RouterCreator,
+  router: RouterSingleton,
   ...args: unknown[]
 ): TPromise<boolean> => {
   return new TPromise((resolve) => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     router.getInstance().createRoutes(...args);
     resolve(true);
   });

@@ -2,7 +2,6 @@ import { DatabaseHandler } from 'backapi';
 import RouterSingleton from './routerSingleton';
 import createRoutes from './createRoutes';
 import timer from './timer';
-import RouterCreator from './routerCreator';
 import baseRouter from './baseRouter';
 
 console.log('Initializing Routes...');
@@ -14,7 +13,7 @@ const useStep = process.env.USE_STEP
   : false;
 
 const stepIndex = (
-  routerSingleton: RouterCreator,
+  routerSingleton: RouterSingleton,
   databaseHandler: DatabaseHandler
 ): RouterSingleton => {
   if (useStep) {
@@ -29,7 +28,7 @@ const stepIndex = (
           createRoutes(
             routerSingleton,
             dBHandler.getInit(),
-            dBHandler.getMauth()
+            dBHandler.getMauth ? dBHandler.getMauth() : undefined
           ),
         ]).then((finished: boolean) => {
           done = finished;
@@ -40,7 +39,9 @@ const stepIndex = (
         return baseRouter(500, error);
       }
     } else {
-      return routerSingleton.getInstance() as RouterSingleton;
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      return routerSingleton.getInstance();
     }
     return baseRouter(503, 'Server still initializing, please try later');
   } else {
@@ -49,9 +50,15 @@ const stepIndex = (
       dBHandler = databaseHandler;
     }
     if (!done) {
-      createRoutes(routerSingleton, dBHandler.getInit(), dBHandler.getMauth());
+      createRoutes(
+        routerSingleton,
+        dBHandler.getInit(),
+        dBHandler.getMauth ? dBHandler.getMauth() : undefined
+      );
     }
-    return routerSingleton.getInstance() as RouterSingleton;
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    return routerSingleton.getInstance();
   }
 };
 
