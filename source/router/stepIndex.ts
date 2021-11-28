@@ -17,12 +17,12 @@ const stepIndex = (
   routerSingleton: RouterSingleton,
   databaseHandler: DatabaseHandler
 ): RouterSingleton => {
-  if (dBHandler === undefined) {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    dBHandler = databaseHandler;
-  }
-  if (useStep) {
-    try {
+  try {
+    if (dBHandler === undefined) {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      dBHandler = databaseHandler;
+    }
+    if (useStep) {
       if (!done) {
         const stepSize = process.env.STEP_SIZE ? +process.env.STEP_SIZE : 1000;
         Promise.race([
@@ -47,25 +47,26 @@ const stepIndex = (
         return routerSingleton.getInstance();
       }
       if (error) {
+        console.error('Thrown error:', error);
         throw error;
       }
       return baseRouter(503, 'Server still initializing, please try later');
-    } catch (error) {
-      console.error('Error:', error);
-      return baseRouter(500, error);
+    } else {
+      if (!done) {
+        createRoutes(
+          routerSingleton,
+          dBHandler.getInit(),
+          dBHandler.getMauth ? dBHandler.getMauth() : undefined
+        );
+        done = true;
+      }
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      return routerSingleton.getInstance();
     }
-  } else {
-    if (!done) {
-      createRoutes(
-        routerSingleton,
-        dBHandler.getInit(),
-        dBHandler.getMauth ? dBHandler.getMauth() : undefined
-      );
-      done = true;
-    }
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    return routerSingleton.getInstance();
+  } catch (error) {
+    console.error('Error:', error);
+    return baseRouter(500, error);
   }
 };
 
