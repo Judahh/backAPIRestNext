@@ -22,6 +22,7 @@ import request from './router/request';
 import RouterCreator from './router/routerCreator';
 import stepIndex from './router/stepIndex';
 import timer from './router/timer';
+import requestAllow from './router/requestAllow';
 
 export {
   BaseController,
@@ -42,6 +43,7 @@ export {
   controller,
   createRoutes,
   request,
+  requestAllow,
   RouterCreator,
   stepIndex,
   timer,
