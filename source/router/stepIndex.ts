@@ -17,11 +17,11 @@ const stepIndex = (
   databaseHandler: DatabaseHandler
 ): RouterSingleton => {
   if (useStep) {
-    if (dBHandler === undefined) {
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
-      dBHandler = databaseHandler;
-    } else if (!done) {
-      try {
+    try {
+      if (dBHandler === undefined) {
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        dBHandler = databaseHandler;
+      } else if (!done) {
         const stepSize = process.env.STEP_SIZE ? +process.env.STEP_SIZE : 1000;
         Promise.race([
           timer(stepSize),
@@ -34,16 +34,16 @@ const stepIndex = (
           done = finished;
           console.log('finished:', finished);
         });
-      } catch (error) {
-        console.log('error:', error);
-        return baseRouter(500, error);
+      } else {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        return routerSingleton.getInstance();
       }
-    } else {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      return routerSingleton.getInstance();
+      return baseRouter(503, 'Server still initializing, please try later');
+    } catch (error) {
+      console.log('error:', error);
+      return baseRouter(500, error);
     }
-    return baseRouter(503, 'Server still initializing, please try later');
   } else {
     if (dBHandler === undefined) {
       // eslint-disable-next-line @typescript-eslint/no-var-requires
