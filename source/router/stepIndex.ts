@@ -47,6 +47,7 @@ const stepIndex = (
         return routerSingleton.getInstance();
       }
       if (error) {
+        console.error('Thrown error:', error);
         throw error;
       }
       return baseRouter(503, 'Server still initializing, please try later');
