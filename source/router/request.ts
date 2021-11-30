@@ -2,14 +2,18 @@ import { DatabaseHandler } from 'backapi';
 import RouterSingleton from './routerSingleton';
 import controller from './controller';
 
-const request = (
+const request = async (
   req: Request,
   res: Response,
   routerSingleton: RouterSingleton,
   databaseHandler: DatabaseHandler,
   name: string
-): Promise<Response> | undefined => {
-  const currentController = controller(routerSingleton, databaseHandler, name);
+): Promise<Promise<Response> | undefined> => {
+  const currentController = await controller(
+    routerSingleton,
+    databaseHandler,
+    name
+  );
   return currentController?.mainRequestHandler.bind(currentController)(
     req,
     res

@@ -3,12 +3,14 @@ import { BaseControllerDefault } from 'backapirest';
 import RouterSingleton from './routerSingleton';
 import stepIndex from './stepIndex';
 
-const controller = (
+const controller = async (
   routerSingleton: RouterSingleton,
   databaseHandler: DatabaseHandler,
   name: string
-): BaseControllerDefault | undefined => {
-  return stepIndex(routerSingleton, databaseHandler)?.getController(name);
+): Promise<BaseControllerDefault | undefined> => {
+  return (await stepIndex(routerSingleton, databaseHandler))?.getController(
+    name
+  );
 };
 
 export default controller;
