@@ -3,54 +3,48 @@ import RouterSingleton from './routerSingleton';
 import createRoutes from './createRoutes';
 import timer from './timer';
 import baseRouter from './baseRouter';
+import HttpError from './httpError';
 
 console.log('Initializing Routes...');
 let dBHandler;
 let done = false;
-let error: Error | undefined;
 const useStep = process.env.USE_STEP
   ? process.env.USE_STEP.toLowerCase() === 'true' ||
     process.env.USE_STEP === '1'
   : false;
 
-const stepIndex = (
+const stepIndex = async (
   routerSingleton: RouterSingleton,
   databaseHandler: DatabaseHandler
-): RouterSingleton => {
+): Promise<RouterSingleton> => {
   try {
     if (dBHandler === undefined) {
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
       dBHandler = databaseHandler;
+      if (useStep)
+        throw new HttpError(503, 'Server still initializing, please try later');
     }
     if (useStep) {
       if (!done) {
         const stepSize = process.env.STEP_SIZE ? +process.env.STEP_SIZE : 1000;
-        Promise.race([
+        await Promise.race([
           timer(stepSize),
           createRoutes(
             routerSingleton,
             dBHandler.getInit(),
             dBHandler.getMauth ? dBHandler.getMauth() : undefined
           ),
-        ])
-          .then((finished: boolean) => {
-            done = finished;
-          })
-          .catch((promiseError: Error) => {
-            error = promiseError;
-            console.error('Promise error:', error);
-            return baseRouter(500, error);
-          });
+        ]);
+        done = true;
       } else {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         return routerSingleton.getInstance();
       }
-      if (error) {
-        console.error('Thrown error:', error);
-        throw error;
-      }
-      return baseRouter(503, 'Server still initializing, please try later');
+      const error = new HttpError(
+        503,
+        'Server still initializing, please try later'
+      );
+      throw error;
     } else {
       if (!done) {
         createRoutes(
@@ -66,7 +60,7 @@ const stepIndex = (
     }
   } catch (error) {
     console.error('Error:', error);
-    return baseRouter(500, error);
+    return baseRouter((error as HttpError).code | 500, error);
   }
 };
 
