@@ -4,6 +4,7 @@ import createRoutes from './createRoutes';
 import timer from './timer';
 import baseRouter from './baseRouter';
 import HttpError from './httpError';
+import InitError from './initError';
 
 console.log('Initializing Routes...');
 let dBHandler;
@@ -20,8 +21,7 @@ const stepIndex = async (
   try {
     if (dBHandler === undefined) {
       dBHandler = databaseHandler;
-      if (useStep)
-        throw new HttpError(503, 'Server still initializing, please try later');
+      if (useStep) throw new InitError();
     }
     if (useStep) {
       if (!done) {
@@ -40,11 +40,7 @@ const stepIndex = async (
         // @ts-ignore
         return routerSingleton.getInstance();
       }
-      const error = new HttpError(
-        503,
-        'Server still initializing, please try later'
-      );
-      throw error;
+      throw new InitError();
     } else {
       if (!done) {
         createRoutes(
@@ -60,7 +56,10 @@ const stepIndex = async (
     }
   } catch (error) {
     console.error('Error:', error);
-    return baseRouter((error as HttpError).code | 500, error);
+    return baseRouter(
+      (error as HttpError).code || 500,
+      (error as HttpError).message || error
+    );
   }
 };
 
