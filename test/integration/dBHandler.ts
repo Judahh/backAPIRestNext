@@ -33,3 +33,5 @@ export default DatabaseHandler.getInstance({
   handler: handler,
   journaly: journaly,
 }) as DatabaseHandler;
+
+export { write, read };

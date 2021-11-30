@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-this-alias */
-import DBHandler from './dBHandler';
+import DBHandler, { read, write } from './dBHandler';
 import TestController from './testController';
 import { Test } from './test.class';
 import { mockResponse } from './response.mock';
 
 import { NextApiRequest as Request, NextApiResponse as Response } from 'next';
 
-test('store test, update, select all, select by id test and delete it', async (done) => {
+test('store test, update, select all, select by id test and delete it', async () => {
   const handler = DBHandler.getHandler();
   const controller = new TestController(DBHandler.getInit());
   try {
@@ -137,9 +137,11 @@ test('store test, update, select all, select by id test and delete it', async (d
     await handler?.getWrite()?.clear();
     await handler.getWrite()?.getRead()?.getReadDB()?.clear();
     expect(error).toBe(null);
-    done();
+    write.close();
+    read.close();
   }
   await handler?.getWrite()?.clear();
   await handler.getWrite()?.getRead()?.getReadDB()?.clear();
-  done();
+  write.close();
+  read.close();
 });
