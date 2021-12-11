@@ -2,7 +2,7 @@
   "name": "@backapirest/next",
   "productName": "backAPIRestNext",
   "author": "Judah Holanda Correia Lima <judahholanda7@gmail.com> (https://judahh.com)",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "private": false,
   "description": "A simple API framework using Flexible Persistence",
   "main": "dist/source/index.js",
@@ -54,6 +54,8 @@
     "thread-promises": "latest"
   },
   "devDependencies": {
+    "flexiblepersistence": "latest",
+    "@flexiblepersistence/service": "latest",
     "@types/jest": "latest",
     "@types/node": "latest",
     "@types/react": "latest",
