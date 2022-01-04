@@ -47,7 +47,7 @@
     "tsc:w": "tsc -w"
   },
   "dependencies": {
-    "backapi": "latest",
+    "backapi": "1.1.0",
     "backapirest": "latest",
     "journaly": "latest",
     "next": "latest",
