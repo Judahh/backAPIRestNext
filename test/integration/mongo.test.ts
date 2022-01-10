@@ -16,7 +16,7 @@ test('store test, update, select all, select by id test and delete it', async ()
     const sentTest = new Test();
     const sentTest2 = new Test();
 
-    const store = await controller.store(
+    const store = await controller.create(
       {
         body: sentTest,
       } as unknown as Request,
@@ -42,7 +42,7 @@ test('store test, update, select all, select by id test and delete it', async ()
     const indexTest = index['received'];
     expect(indexTest).toStrictEqual(expectedTest);
 
-    const store2 = await controller.store(
+    const store2 = await controller.create(
       {
         body: sentTest2,
       } as unknown as Request,
