@@ -26,7 +26,7 @@ await handler.getWrite().clear('events');
 const sentTest = new Test();
 const sentTest2 = new Test();
 
-const store = await controller.store(
+const store = await controller.create(
     ({
     body: sentTest,
     } as unknown) as Request,
