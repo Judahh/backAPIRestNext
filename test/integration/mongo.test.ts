@@ -134,11 +134,11 @@ test('store test, update, select all, select by id test and delete it', async ()
     expect(showTest3).toStrictEqual(expectedTests3);
   } catch (error) {
     console.error(error);
-    await handler?.getWrite()?.clear();
-    await handler.getWrite()?.getRead()?.getReadDB()?.clear();
+    // await handler?.getWrite()?.clear();
+    // await handler.getWrite()?.getRead()?.getReadDB()?.clear();
     expect(error).toBe(null);
-    write.close();
-    read.close();
+    // write.close();
+    // read.close();
   }
   await handler?.getWrite()?.clear();
   await handler.getWrite()?.getRead()?.getReadDB()?.clear();

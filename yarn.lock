@@ -324,9 +324,9 @@
     journaly latest
 
 "@flexiblepersistence/service@latest":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@flexiblepersistence/service/-/service-2.0.0.tgz#97cd9db9d6e0980bc141e0634bb3cada1f55f412"
-  integrity sha512-kaePQcZjaT28eqIEWS1TPlDmjqnckuAXb1rx8ByiLaA3+oNRphN6VeyGtXAfH7hJGC0kfccwrpA8FthLTm1p5g==
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@flexiblepersistence/service/-/service-2.0.1.tgz#a94c2f02f09fc232e76381ec4dc907060d89358a"
+  integrity sha512-APa+V/Btw9naw0HANI9Y/Vx8GSo4iJFkadK/ZX5U/XCREDRJWjJiFha7/fhRPCsqoFAqhsOD709CTnCwOfrQAQ==
   dependencies:
     journaly latest
 
@@ -1053,9 +1053,9 @@ babel-preset-jest@^27.4.0:
     babel-preset-current-node-syntax "^1.0.0"
 
 backapi@latest:
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/backapi/-/backapi-2.0.6.tgz#7fb72dbd7a6ce30a3b3dea69441b391fe1a75474"
-  integrity sha512-5tISjIqCEYV67uz02sSq+22dD0qePvBl/xW7kLw7hd7UUOEuuxnwNSXqxn4DtseggLd35pdwJ/PqKUFsi5TMiA==
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/backapi/-/backapi-2.0.7.tgz#b985310bcdf93038c848f43eb5cb87f0e680140b"
+  integrity sha512-Uafh0qOiP6PuoOC+bOTjH869DErw1or95gMdCFix1P25bACHoDyS15wrXqyUaISYsI+3FEoQ1B+y0s1cb1EWdQ==
   dependencies:
     "@flexiblepersistence/default-initializer" latest
     "@flexiblepersistence/service" latest
@@ -1064,9 +1064,9 @@ backapi@latest:
     ts-mixer latest
 
 backapirest@latest:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/backapirest/-/backapirest-2.0.3.tgz#ad50f836518cead1272198de6102059e98e87cea"
-  integrity sha512-wcVMIBzdGp7bcDL3DepHmRdt06F296WG7Bo0wRSQ8Ew/p582BN5bjLVr+ldGixK9lCW6OIKM1xo5bRYIULxiiA==
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/backapirest/-/backapirest-2.0.4.tgz#3cf6f2e349d74a907b3a72cf1fa5e7a4c06a355c"
+  integrity sha512-EHpVtBT7oTnELt6ySqJXwHw1vHF3C2NblQyRvFRuwSOsXyeoOqr/dpTjSbcnk/gqn5q2B6ij4+16/ulj+2J0PA==
   dependencies:
     "@flexiblepersistence/default-initializer" latest
     "@flexiblepersistence/service" latest
@@ -1432,9 +1432,9 @@ domexception@^2.0.1:
     webidl-conversions "^5.0.0"
 
 electron-to-chromium@^1.4.17:
-  version "1.4.43"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.43.tgz#665c0cd8d5e7cce0ba78d90a514c8c813ca3bdbe"
-  integrity sha512-PO3kEfcxPrti/4STbXvCkNIF4fgWvCKl2508e6UI7KomCDffpIfeBZLXsh5DK/XGsjUw3kwq6WEsi0MJTlGAdg==
+  version "1.4.45"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.45.tgz#cf1144091d6683cbd45a231954a745f02fb24598"
+  integrity sha512-czF9eYVuOmlY/vxyMQz2rGlNSjZpxNQYBe1gmQv7al171qOIhgyO9k7D5AKlgeTCSPKk+LHhj5ZyIdmEub9oNg==
 
 emittery@^0.8.1:
   version "0.8.1"
@@ -1820,9 +1820,9 @@ flatted@^3.1.0:
   integrity sha512-8/sOawo8tJ4QOBX8YlQBMxL8+RLZfxMQOif9o0KUKTNTjMYElWPE0r/m5VNFxTRd0NSw8qSy8dajrwX4RYI1Hw==
 
 flexiblepersistence@latest:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/flexiblepersistence/-/flexiblepersistence-3.0.1.tgz#4dcb73c2269923b9d05fb94b26ad95da71a7e775"
-  integrity sha512-focLBSIboOx32YkvPxMed37cheON0WoQyVP0XB8pGS3meywsLqPY3QplRY4+uXAuwl/QhRGkvLGOW8Yb40tjhg==
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/flexiblepersistence/-/flexiblepersistence-3.0.2.tgz#e6027710588ab64edfb2d7064222471d429117a4"
+  integrity sha512-HxggF+/GFTJ7/1bH7xEnVOKKOZskR2oVdJEPL0hoajTEcsjGAwXNolrvldGShV6LCt/MTsC6ZDs/W+bmDg+Zdg==
   dependencies:
     "@flexiblepersistence/default-initializer" latest
     journaly latest
