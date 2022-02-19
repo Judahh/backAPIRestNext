@@ -50,7 +50,7 @@
     "backapi": "latest",
     "backapirest": "latest",
     "journaly": "latest",
-    "next": "latest",
+    "next": "12.1.0",
     "thread-promises": "latest"
   },
   "devDependencies": {
