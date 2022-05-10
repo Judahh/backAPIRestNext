@@ -6,13 +6,28 @@ import { mockResponse } from './response.mock';
 
 import { NextApiRequest as Request, NextApiResponse as Response } from 'next';
 
-test('store test, update, select all, select by id test and delete it', async () => {
-  const handler = DBHandler.getHandler();
-  const controller = new TestController(DBHandler.getInit());
-  try {
-    await handler?.getWrite()?.clear();
-    await handler.getWrite()?.getRead()?.getReadDB()?.clear();
+let handler;
+let controller;
+describe('1', () => {
+  beforeEach(async () => {
+    // console.log('beforeEach');
+    handler = DBHandler.getHandler();
+    controller = new TestController(DBHandler.getInit());
+    // await handler?.getRead()?.clear();
+    // await handler?.getWrite()?.clear();
+  });
 
+  afterEach(async () => {
+    // console.log('afterEach');
+    if (handler !== undefined) {
+      await handler?.getRead()?.clear();
+      await handler?.getWrite()?.clear();
+    }
+    if (read !== undefined) await read?.close();
+    if (write !== undefined) await write?.close();
+    handler = undefined;
+  });
+  test('store test, update, select all, select by id test and delete it', async () => {
     const sentTest = new Test();
     const sentTest2 = new Test();
 
@@ -28,9 +43,10 @@ test('store test, update, select all, select by id test and delete it', async ()
 
     sentTest.id = storedTest.id;
     const expectedTest = { id: storedTest.id };
-    // console.log('expectedTest:', expectedTest);
+    console.log('expectedTest:', expectedTest);
+    console.log('storedTest:', storedTest);
 
-    expect(storedTest).toStrictEqual(expectedTest);
+    expect(storedTest).toMatchObject(expectedTest);
 
     const index = await controller.index(
       {
@@ -40,7 +56,7 @@ test('store test, update, select all, select by id test and delete it', async ()
     );
     // console.log('show:', show);
     const indexTest = index['received'];
-    expect(indexTest).toStrictEqual(expectedTest);
+    expect(indexTest).toMatchObject(expectedTest);
 
     const store2 = await controller.create(
       {
@@ -56,7 +72,7 @@ test('store test, update, select all, select by id test and delete it', async ()
     const expectedTest2 = { id: storedTest2.id };
     // console.log('expectedTest:', expectedTest);
 
-    expect(storedTest2).toStrictEqual(expectedTest2);
+    expect(storedTest2).toMatchObject(expectedTest2);
 
     const show = await controller.show(
       {
@@ -66,9 +82,14 @@ test('store test, update, select all, select by id test and delete it', async ()
     );
 
     const showTest = show['received'];
-    // console.log('showTest:', showTest);
+
     const expectedTests = [storedTest, storedTest2];
-    expect(showTest).toStrictEqual(expectedTests);
+
+    const cleanShowTest = JSON.parse(JSON.stringify(showTest));
+    const cleanExpectedTests = JSON.parse(JSON.stringify(expectedTests));
+    console.log('showTest:', cleanShowTest);
+    console.log('expectedTests:', cleanExpectedTests);
+    expect(cleanShowTest).toEqual(cleanExpectedTests);
 
     const sentTest3 = { name: 'Test' };
 
@@ -90,7 +111,14 @@ test('store test, update, select all, select by id test and delete it', async ()
     // console.log('updatedTest:', updatedTest);
     const expectedUpdatedTest = { id: storedTest2.id, name: sentTest3.name };
     // console.log('expectedUpdatedTest:', expectedUpdatedTest);
-    expect(updatedTest).toStrictEqual(expectedUpdatedTest);
+
+    const cleanUpdatedTest = JSON.parse(JSON.stringify(updatedTest));
+    const cleanExpectedUpdatedTest = JSON.parse(
+      JSON.stringify(expectedUpdatedTest)
+    );
+    console.log('cleanUpdatedTest:', cleanUpdatedTest);
+    console.log('cleanExpectedUpdatedTest:', cleanExpectedUpdatedTest);
+    expect(cleanUpdatedTest).toEqual(cleanExpectedUpdatedTest);
 
     const show2 = await controller.show(
       {
@@ -100,11 +128,16 @@ test('store test, update, select all, select by id test and delete it', async ()
     );
 
     const showTest2 = show2['received'];
-    // console.log('showTest2:', showTest2);
+
     const expectedTests2 = [storedTest, expectedUpdatedTest];
+    // console.log('showTest2:', showTest2);
     // console.log('expectedTests2:', expectedTests2);
 
-    expect(showTest2).toStrictEqual(expectedTests2);
+    const cleanShowTest2 = JSON.parse(JSON.stringify(showTest2));
+    const cleanExpectedTests2 = JSON.parse(JSON.stringify(expectedTests2));
+    console.log('cleanShowTest2:', cleanShowTest2);
+    console.log('cleanExpectedTests2:', cleanExpectedTests2);
+    expect(cleanShowTest2).toEqual(cleanExpectedTests2);
 
     const deleted = await controller.delete(
       {
@@ -119,7 +152,13 @@ test('store test, update, select all, select by id test and delete it', async ()
     // console.log('deletedTest:', deletedTest);
     const expectedDeletedTest = expectedUpdatedTest;
     // console.log('expectedDeletedTest:', expectedDeletedTest);
-    expect(deletedTest).toStrictEqual(expectedDeletedTest);
+    const cleanDeletedTest = JSON.parse(JSON.stringify(deletedTest));
+    const cleanExpectedDeletedTest = JSON.parse(
+      JSON.stringify(expectedDeletedTest)
+    );
+    console.log('cleanDeletedTest:', cleanDeletedTest);
+    console.log('cleanExpectedDeletedTest:', cleanExpectedDeletedTest);
+    expect(cleanDeletedTest).toEqual(cleanExpectedDeletedTest);
 
     const show3 = await controller.show(
       {
@@ -131,17 +170,10 @@ test('store test, update, select all, select by id test and delete it', async ()
     const showTest3 = show3['received'];
     // console.log('showTest3:', showTest3);
     const expectedTests3 = [storedTest];
-    expect(showTest3).toStrictEqual(expectedTests3);
-  } catch (error) {
-    console.error(error);
-    // await handler?.getWrite()?.clear();
-    // await handler.getWrite()?.getRead()?.getReadDB()?.clear();
-    expect(error).toBe(null);
-    // write.close();
-    // read.close();
-  }
-  await handler?.getWrite()?.clear();
-  await handler.getWrite()?.getRead()?.getReadDB()?.clear();
-  write.close();
-  read.close();
+    const cleanShowTest3 = JSON.parse(JSON.stringify(showTest3));
+    const cleanExpectedTests3 = JSON.parse(JSON.stringify(expectedTests3));
+    console.log('cleanShowTest3:', cleanShowTest3);
+    console.log('cleanExpectedTests3:', cleanExpectedTests3);
+    expect(cleanShowTest3).toEqual(cleanExpectedTests3);
+  });
 });
