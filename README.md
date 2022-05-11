@@ -35,8 +35,6 @@ const store = await controller.create(
 console.log('store:', store);
 ```
 
-![Overview](./doc/overview.svg)
-
 ## Installation
 
 This is a [Node.js](https://nodejs.org/en/) module available through the
