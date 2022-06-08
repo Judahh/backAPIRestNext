@@ -1057,14 +1057,15 @@ backapi@latest:
     journaly latest
     ts-mixer latest
 
-backapirest@latest:
-  version "2.0.13"
-  resolved "https://registry.yarnpkg.com/backapirest/-/backapirest-2.0.13.tgz#83115e64e22a6227be61373b795c48d2a1907d92"
-  integrity sha512-cZI7jeP8Nh7auT8cliIYNYgZFbEj3snBJxXHe6dQXFtu7IgjZo5x3Eew1W1OU155s5u4bq72u95aDTX0ALhPEw==
+backapirest@2.0.14:
+  version "2.0.14"
+  resolved "https://registry.yarnpkg.com/backapirest/-/backapirest-2.0.14.tgz#ed2cd24d8b0446462930f3906e429861530f4978"
+  integrity sha512-ujdQ00KECCfHf0dBrAnK9Lwa2rGLdFnMlK3P/MWcE5MZXH4F1aGZ0bhYhUsxvxDx3PhZdUZ3TKrkS3i6M0k4nw==
   dependencies:
     "@flexiblepersistence/default-initializer" latest
     "@flexiblepersistence/service" latest
     backapi latest
+    flatted latest
     flexiblepersistence latest
     journaly latest
     pg latest
@@ -1733,7 +1734,7 @@ flat-cache@^3.0.4:
     flatted "^3.1.0"
     rimraf "^3.0.2"
 
-flatted@^3.1.0:
+flatted@^3.1.0, flatted@latest:
   version "3.2.5"
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.2.5.tgz#76c8584f4fc843db64702a6bd04ab7a8bd666da3"
   integrity sha512-WIWGi2L3DyTUvUrwRKgGi9TwxQMUEqPOPQBVi71R96jZXJdFskXEmf54BoZaS1kknGODoIGASGEzBUYdyMCBJg==

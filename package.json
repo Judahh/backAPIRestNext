@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "backapi": "latest",
-    "backapirest": "latest",
+    "backapirest": "2.0.14",
     "journaly": "latest",
     "next": "latest",
     "thread-promises": "latest"
