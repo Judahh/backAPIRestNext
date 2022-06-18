@@ -2,12 +2,15 @@
   "name": "@backapirest/next",
   "productName": "backAPIRestNext",
   "author": "Judah Holanda Correia Lima <judahholanda7@gmail.com> (https://judahh.com)",
-  "version": "2.0.11",
+  "version": "2.0.12",
   "private": false,
   "description": "A simple API framework using Flexible Persistence",
   "main": "dist/source/index.js",
   "module": "dist/source/index.js",
   "types": "dist/source/index.d.ts",
+  "bin": {
+    "back": "source/script/back.sh"
+  },
   "files": [
     "dist"
   ],
