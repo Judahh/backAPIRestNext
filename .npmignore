@@ -16,3 +16,4 @@ temp.ts
 .yml
 .next
 !script/**/*
+!/script/**/*
