@@ -8,7 +8,17 @@ do
     esac
 done
 
-port="${PORT:-port}"
+pwd=$(pwd)
+cd $pwd;
+
+if [ -f ".env" ]; then
+    echo ".env exists."
+    export $(cat .env | grep -v '#' | sed 's/\r$//' | awk '/=/ {print $1}' )
+fi
+
+port="${PORT:=3000}"
+
+echo "setted Port: ${port}"
 
 case $exec in
   "dev")
