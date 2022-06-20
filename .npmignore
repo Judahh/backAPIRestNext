@@ -17,3 +17,5 @@ temp.ts
 .next
 !script/**/*
 !/script/**/*
+!/script/*
+!script/*
