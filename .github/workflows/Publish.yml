@@ -9,6 +9,7 @@ on:
      - completed
     branches:
       - main
+      - master
 
 jobs:
   build:
@@ -29,6 +30,7 @@ jobs:
         uses: judahh/artifactToUnzip@main
         with:
           production: true
+          branch: ${{ github.ref_name }}
       - name: Publish
         if: contains(matrix.node-version, '14.x')
         uses: judahh/npmPublish@main
