@@ -1,5 +1,5 @@
 import { DatabaseHandler } from 'backapi';
-import RouterSingleton from './routerSingleton';
+import { RouterSingleton } from 'backapirest';
 import createRoutes from './createRoutes';
 import timer from './timer';
 import baseRouter from './baseRouter';

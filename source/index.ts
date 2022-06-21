@@ -11,7 +11,7 @@ import {
   BaseControllerTrace,
 } from 'backapirest';
 
-import RouterSingleton from './router/routerSingleton';
+import { RouterSingleton } from 'backapirest';
 import baseRouter from './router/baseRouter';
 import controller from './router/controller';
 import createRoutes from './router/createRoutes';

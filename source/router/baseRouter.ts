@@ -1,4 +1,4 @@
-import RouterSingleton from './routerSingleton';
+import { RouterSingleton } from 'backapirest';
 
 export default (code: number, error: unknown): RouterSingleton =>
   ({
