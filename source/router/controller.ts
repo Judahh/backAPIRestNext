@@ -10,7 +10,7 @@ const controller = async (
 ): Promise<BaseControllerDefault | undefined> => {
   return (await stepIndex(routerSingleton, databaseHandler))?.getController(
     name
-  );
+  ) as BaseControllerDefault;
 };
 
 export default controller;
