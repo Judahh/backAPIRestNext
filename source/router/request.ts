@@ -1,5 +1,5 @@
 import { DatabaseHandler } from 'backapi';
-import RouterSingleton from './routerSingleton';
+import { RouterSingleton } from 'backapirest';
 import controller from './controller';
 
 const request = async (

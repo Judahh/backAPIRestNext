@@ -1,5 +1,5 @@
 import TPromise from 'thread-promises';
-import RouterSingleton from './routerSingleton';
+import { RouterSingleton } from 'backapirest';
 
 const createRoutes = (
   router: RouterSingleton,

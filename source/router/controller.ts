@@ -1,6 +1,6 @@
 import { DatabaseHandler } from 'backapi';
 import { BaseControllerDefault } from 'backapirest';
-import RouterSingleton from './routerSingleton';
+import { RouterSingleton } from 'backapirest';
 import stepIndex from './stepIndex';
 
 const controller = async (
