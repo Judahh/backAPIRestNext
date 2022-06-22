@@ -1066,9 +1066,9 @@ backapi@latest:
     ts-mixer latest
 
 backapirest@latest:
-  version "2.0.16"
-  resolved "https://registry.yarnpkg.com/backapirest/-/backapirest-2.0.16.tgz#3b0e677b1f8ab0121cfb393738197302ded3b821"
-  integrity sha512-cexLZf5n/g0C/wnlFbggXIl0A5W+SMc7dM7wARt7L9y3x09nlOYhJszxZIKJofHOyaPUDZSHsyp/2U//g0YGRQ==
+  version "2.0.17"
+  resolved "https://registry.yarnpkg.com/backapirest/-/backapirest-2.0.17.tgz#975e0458c139c75ba6564801a49cdc16a15b7dad"
+  integrity sha512-kwhm8UgfPk1/2NEM1qpiUoE2kRlLGVE69Q9kXmpYQMU9jRusrsD6z4WWMI2vG/XzctoJ9kHx/uAF+clagRXmTQ==
   dependencies:
     "@flexiblepersistence/default-initializer" latest
     "@flexiblepersistence/service" latest
