@@ -13,7 +13,8 @@ cd $pwd;
 
 if [ -f ".env" ]; then
     echo ".env exists."
-    export $(cat .env | grep -v '#' | sed 's/\r$//' | awk '/=/ {print $1}' )
+    cat .env | grep -v '#' | grep PORT
+    export $(cat .env | grep -v '#' | grep PORT)
 fi
 
 port="${PORT:=3000}"
