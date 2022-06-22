@@ -19,3 +19,11 @@ temp.ts
 !/script/**/*
 !/script/*
 !script/*
+!script/**/*.mjs
+!/script/**/*.mjs
+!/script/*.mjs
+!script/*.mjs
+!script/**/*.sh
+!/script/**/*.sh
+!/script/*.sh
+!script/*.sh
