@@ -1,10 +1,8 @@
 import { DatabaseHandler } from 'backapi';
-import { RouterSingleton } from 'backapirest';
+import { HttpError, InitError, RouterSingleton } from 'backapirest';
 import createRoutes from './createRoutes';
 import timer from './timer';
 import baseRouter from './baseRouter';
-import HttpError from './httpError';
-import InitError from './initError';
 
 console.log('Initializing Routes...');
 let dBHandler;
