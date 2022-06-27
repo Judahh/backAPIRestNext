@@ -1,15 +1,4 @@
-import {
-  BaseController,
-  BaseControllerDefault,
-  BaseControllerDelete,
-  BaseControllerRead,
-  BaseControllerCreate,
-  BaseControllerUpdate,
-  Mixin,
-  BaseControllerConnect,
-  BaseControllerHead,
-  BaseControllerTrace,
-} from 'backapirest';
+import { Mixin } from 'backapirest';
 
 import { RouterSingleton } from 'backapirest';
 import baseRouter from './router/baseRouter';
@@ -20,6 +9,15 @@ import RouterCreator from './router/routerCreator';
 import stepIndex from './router/stepIndex';
 import timer from './router/timer';
 import requestAllow from './router/requestAllow';
+import BaseController from './controller/baseController';
+import BaseControllerDefault from './controller/baseControllerDefault';
+import BaseControllerDelete from './controller/baseControllerDelete';
+import BaseControllerRead from './controller/baseControllerRead';
+import BaseControllerCreate from './controller/baseControllerCreate';
+import BaseControllerUpdate from './controller/baseControllerUpdate';
+import BaseControllerConnect from './controller/baseControllerConnect';
+import BaseControllerHead from './controller/baseControllerHead';
+import BaseControllerTrace from './controller/baseControllerTrace';
 
 export {
   BaseController,

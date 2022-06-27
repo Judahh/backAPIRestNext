@@ -3,8 +3,7 @@ import { RouterSingleton } from 'backapirest';
 import controller from './controller';
 
 const request = async (
-  req: Request,
-  res: Response,
+  args,
   routerSingleton: RouterSingleton,
   databaseHandler: DatabaseHandler,
   name: string
@@ -14,10 +13,7 @@ const request = async (
     databaseHandler,
     name
   );
-  return currentController?.mainRequestHandler.bind(currentController)(
-    req,
-    res
-  );
+  return currentController?.mainRequestHandler.bind(currentController)(args);
 };
 
 export default request;

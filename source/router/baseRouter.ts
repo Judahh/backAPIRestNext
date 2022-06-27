@@ -4,10 +4,10 @@ export default (code: number, error: unknown): RouterSingleton =>
   ({
     getController: (name?: string) => {
       return {
-        mainRequestHandler: (_req, res) => {
+        mainRequestHandler: (args) => {
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
-          res.status(code).send({
+          args[1].status(code).send({
             error,
             name,
           });
