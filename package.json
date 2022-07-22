@@ -4,7 +4,7 @@
   "author": "Judah Holanda Correia Lima <judahholanda7@gmail.com> (https://judahh.com)",
   "version": "3.0.7",
   "private": false,
-  "description": "A simple API framework using Flexible Persistence",
+  "description": "A simple API framework using Flexible Persistence for Next",
   "main": "dist/source/index.js",
   "module": "dist/source/index.js",
   "types": "dist/source/index.d.ts",
