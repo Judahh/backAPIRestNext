@@ -1821,6 +1821,17 @@ babel-preset-jest@^29.2.0:
     babel-plugin-jest-hoist "^29.2.0"
     babel-preset-current-node-syntax "^1.0.0"
 
+backapi@2.0.15:
+  version "2.0.15"
+  resolved "https://registry.yarnpkg.com/backapi/-/backapi-2.0.15.tgz#52794169485ce6c7274565d030a3393de149c104"
+  integrity sha512-Nugg4kCHr3dKqd8wsWlWAlIciBy0J2qFNxovhY30hFy9ajLqQWMbo5ZzL6dGldQQIQITNszV64NSHOmXwhtT3g==
+  dependencies:
+    "@flexiblepersistence/default-initializer" latest
+    "@flexiblepersistence/service" latest
+    flexiblepersistence latest
+    journaly latest
+    ts-mixer latest
+
 backapi@latest:
   version "3.1.11"
   resolved "https://registry.yarnpkg.com/backapi/-/backapi-3.1.11.tgz#84d5eda583a4775538a971f46ba25fa9b420131b"
