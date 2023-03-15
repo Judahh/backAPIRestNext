@@ -1832,10 +1832,10 @@ backapi@latest:
     journaly latest
     ts-mixer latest
 
-backapirest@latest:
-  version "3.1.12"
-  resolved "https://registry.yarnpkg.com/backapirest/-/backapirest-3.1.12.tgz#049045e2bab0d8ad98edd28bae7ae6b7e4c3cb10"
-  integrity sha512-rJwheh3xcqnIo1MlSJ70lmDrk5oVMOkNtOP6Sbru3qR7VzprgFAYmurbhYLVXAx1/2vNeBv7AAzVw29MZk12Ug==
+backapirest@3.1.13:
+  version "3.1.13"
+  resolved "https://registry.yarnpkg.com/backapirest/-/backapirest-3.1.13.tgz#528403ef20983aeb4291d7908d23b33fb904e939"
+  integrity sha512-z1z0LuuM/S+jP85x9HQxypB3CS5RhUGJAyCDQrls6hUBo6m7p1B7SNDuiIR9e/HzsBNOzAN8BCNcYa7Frzlk3w==
   dependencies:
     "@flexiblepersistence/default-initializer" latest
     "@flexiblepersistence/service" latest
